@@ -21,7 +21,7 @@ local Junk = workspace:WaitForChild("Junk")
 local posPlusOne = Vector3.new(1,1,1)
 local Yourself = {}
 
--- test line
+
 
 -- remove out of char, fix shadow on meshes and rotation
 
