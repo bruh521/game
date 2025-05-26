@@ -106,6 +106,13 @@ local function ApplyAttributes(char)
 	end
 	-- Watch Attributes until death or leave
 	AttributeHandler.WatchAttributes(char)
+
+	-- set defaults (again)
+for Attribute2, Vals2 in pairs(Config.DefaultAttributes) do
+		local val3 = Vals2['Default'] or 0
+		hum:SetAttribute(Attribute2,val3)
+	end
+	
 end
 
 local function checkAdmin(userid)
