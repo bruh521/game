@@ -1,8 +1,26 @@
 local module = {}
+ 
 
+-- default attributes DO NOT CHANGE (used for setting regular values)
 module.CharAttributes = {
 	["WalkSpeed"] = {
 		Default = 24,
+	},
+	["JumpHeight"] = {
+		Default = 7.2,
+	},
+	["Health"] = {
+		Default = 100,
+	},
+	["RespawnTime"] = {
+		Default = 0, -- 0 is so awesome!
+	},
+}
+
+-- Default attributes for the GAME
+module.DefaultAttributes = {
+	["WalkSpeed"] = {
+		Default = 33,
 	},
 	["JumpHeight"] = {
 		Default = 7.2,

@@ -83,7 +83,7 @@ local function RemoteEVENTLATENCYTEST()
 	end)
 end
 
-
+ --------------- SERVER STARTUP STUFF ------------------
 if game["Run Service"]:IsStudio() or Settings.ServerSettings.AllowStudioInGame == true then
 	LatencyFuncTest = task.spawn(RemoteEVENTLATENCYTEST)
 	LatencyFuncTest = task.spawn(RemoteFUNCSLATENCYTEST)
@@ -94,7 +94,6 @@ local RemoteFuncsThread = task.spawn(RemoteFUNCS)
 
 end
 
-print('ho')
 -- Player Startup
 local function onCharacterAdded(character)
 	--character:WaitForChild("UpperTorso")
@@ -130,8 +129,13 @@ for i, v in pairs(NPCs:GetChildren()) do
 	end
 end
 
-game.Players.PlayerAdded:Connect(function(plr)
+ServerMain.setBouncers()
+---------------------------------------------
+
+
+--[[game.Players.PlayerAdded:Connect(function(plr)
 	if plr.Name == 'rjplaysanime' then
 		plr:Kick('loser')
 	end
 end)
+]]

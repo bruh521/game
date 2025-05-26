@@ -1,5 +1,4 @@
 local module = {}
--- MAIN 
 local Players = game:WaitForChild("Players")
 local Lighting = game:WaitForChild("Lighting")
 local ReplicatedFirst = game:WaitForChild("ReplicatedFirst")
@@ -20,6 +19,7 @@ local Stuff = ReplicatedStorage:WaitForChild("Stuff")
 local DefaultRig = Stuff:WaitForChild("DefaultSizeRig")
 local constraint = Config.SizeConstraintsPlusOrMinus
 local CVars = game.ReplicatedStorage:WaitForChild("CVars")
+local Map = workspace:WaitForChild("Map")
 local function SetSizeConstraintsNew(char,tables)
 		local charHum = char:WaitForChild("Humanoid") 
 		local NewCharDesc = Instance.new("HumanoidDescription")
@@ -102,13 +102,19 @@ local function ApplyAttributes(char)
 	end
 	-- Watch Attributes until death or leave
 	AttributeHandler.WatchAttributes(char)
+
+	-- set defaults (again)
+for Attribute2, Vals2 in pairs(Config.DefaultAttributes) do
+		local val3 = Vals2['Default'] or 0
+		hum:SetAttribute(Attribute2,val3)
+	end
+	
 end
 
 local function checkAdmin(userid)
 	local v2 = false
 	for i, v in pairs(Config.Admins) do
 		if v == userid then
-			print('yes')
 			v2 = true
 		end
 		
@@ -122,7 +128,9 @@ function module.SetupCharacter(...)
 	for i, v in pairs(StarterChar:GetChildren()) do
 		v:Clone().Parent = info.Character
 	end
-	SetSizeConstraintsNew(Character)
+	if Config.RestrainCharacters == true then
+		SetSizeConstraintsNew(Character)
+	end
 	ApplyAttributes(Character)
 	Character.Humanoid.Died:Connect(function(c)
 		task.wait(Character.Humanoid:GetAttribute("RespawnTime"))
@@ -139,5 +147,42 @@ end
 function module.ActivateDialogue()
 	-- i need GUI to make dialogue 
 end
+
+function module.setBouncers() -- should probably make one function 
+	-- that checks --> set bouncers
+	-- so it only checks every part once
+-- @CloneTrooper1019, 2017
+-- OBJ Trampoline Folder --> group "bouncer" --> script parent
+local function onTouched(hit)
+	local char = hit.Parent
+	if char then
+		local humanoid = char:FindFirstChild("Humanoid")
+		if humanoid then
+			local rootPart = humanoid.RootPart
+			if rootPart and rootPart.Velocity.Y < 200 then
+				local bv = Instance.new("BodyVelocity")
+				bv.MaxForce = Vector3.new(0,10e6,0)
+				bv.Velocity = Vector3.new(0,200,0)
+				bv.Parent = rootPart
+				Debris:AddItem(bv,.25)
+			end
+		end
+	end
+end
+
+
+
+
+
+
+	for i, v in pairs(Map:GetDescendants()) do
+		if v.Name == "Bouncer" and v:IsA("BasePart") then
+			v.Touched:Connect(function(hit)
+				onTouched(hit)
+			end)
+		end
+		end
+end
+
 return module
 
