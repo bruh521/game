@@ -130,8 +130,9 @@ for i, v in pairs(NPCs:GetChildren()) do
 	end
 end
 
-game.Players.PlayerAdded:Connect(function(plr)
+--[[game.Players.PlayerAdded:Connect(function(plr)
 	if plr.Name == 'rjplaysanime' then
 		plr:Kick('loser')
 	end
 end)
+]]

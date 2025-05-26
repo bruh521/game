@@ -108,7 +108,6 @@ local function checkAdmin(userid)
 	local v2 = false
 	for i, v in pairs(Config.Admins) do
 		if v == userid then
-			print('yes')
 			v2 = true
 		end
 		
@@ -122,7 +121,9 @@ function module.SetupCharacter(...)
 	for i, v in pairs(StarterChar:GetChildren()) do
 		v:Clone().Parent = info.Character
 	end
-	SetSizeConstraintsNew(Character)
+	if Config.RestrainCharacters == true then
+		SetSizeConstraintsNew(Character)
+	end
 	ApplyAttributes(Character)
 	Character.Humanoid.Died:Connect(function(c)
 		task.wait(Character.Humanoid:GetAttribute("RespawnTime"))
