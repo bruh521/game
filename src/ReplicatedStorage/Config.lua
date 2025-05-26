@@ -2,7 +2,7 @@ local module = {}
 
 module.CharAttributes = {
 	["WalkSpeed"] = {
-		Default = 16,
+		Default = 24,
 	},
 	["JumpHeight"] = {
 		Default = 7.2,
@@ -60,7 +60,7 @@ module.BannedThings = {
 
 
 module.BannedThingsNum = 5637151279
-
+module.RestrainCharacters = true
 return module
 
 
