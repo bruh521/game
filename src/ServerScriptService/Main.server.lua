@@ -83,7 +83,7 @@ local function RemoteEVENTLATENCYTEST()
 	end)
 end
 
-
+ --------------- SERVER STARTUP STUFF ------------------
 if game["Run Service"]:IsStudio() or Settings.ServerSettings.AllowStudioInGame == true then
 	LatencyFuncTest = task.spawn(RemoteEVENTLATENCYTEST)
 	LatencyFuncTest = task.spawn(RemoteFUNCSLATENCYTEST)
@@ -129,6 +129,10 @@ for i, v in pairs(NPCs:GetChildren()) do
 		ServerMain.ActivateDialogue(v)
 	end
 end
+
+ServerMain.setBouncers()
+---------------------------------------------
+
 
 --[[game.Players.PlayerAdded:Connect(function(plr)
 	if plr.Name == 'rjplaysanime' then

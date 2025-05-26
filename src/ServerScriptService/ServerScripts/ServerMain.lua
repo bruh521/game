@@ -1,5 +1,6 @@
 local module = {}
-
+local Debris = game:GetService("Debris")
+local MarketplaceService = game:GetService("MarketplaceService")
 local Players = game:WaitForChild("Players")
 local Lighting = game:WaitForChild("Lighting")
 local ReplicatedFirst = game:WaitForChild("ReplicatedFirst")
@@ -20,6 +21,7 @@ local Stuff = ReplicatedStorage:WaitForChild("Stuff")
 local DefaultRig = Stuff:WaitForChild("DefaultSizeRig")
 local constraint = Config.SizeConstraintsPlusOrMinus
 local CVars = game.ReplicatedStorage:WaitForChild("CVars")
+local Map = workspace:WaitForChild("Map")
 local function SetSizeConstraintsNew(char,tables)
 		local charHum = char:WaitForChild("Humanoid") 
 		local NewCharDesc = Instance.new("HumanoidDescription")
@@ -140,5 +142,42 @@ end
 function module.ActivateDialogue()
 	-- i need GUI to make dialogue 
 end
+
+function module.setBouncers() -- should probably make one function 
+	-- that checks --> set bouncers
+	-- so it only checks every part once
+-- @CloneTrooper1019, 2017
+-- OBJ Trampoline Folder --> group "bouncer" --> script parent
+local function onTouched(hit)
+	local char = hit.Parent
+	if char then
+		local humanoid = char:FindFirstChild("Humanoid")
+		if humanoid then
+			local rootPart = humanoid.RootPart
+			if rootPart and rootPart.Velocity.Y < 200 then
+				local bv = Instance.new("BodyVelocity")
+				bv.MaxForce = Vector3.new(0,10e6,0)
+				bv.Velocity = Vector3.new(0,200,0)
+				bv.Parent = rootPart
+				Debris:AddItem(bv,.25)
+			end
+		end
+	end
+end
+
+
+
+
+
+
+	for i, v in pairs(Map:GetDescendants()) do
+		if v.Name == "Bouncer" and v:IsA("BasePart") then
+			v.Touched:Connect(function(hit)
+				onTouched(hit)
+			end)
+		end
+		end
+end
+
 return module
 
