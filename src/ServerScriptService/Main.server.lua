@@ -20,7 +20,6 @@ local startTick = Settings.StartTick
 local LatencyFuncTest
 -- only if -tick
 local function RemoteEVENT()
-	print('trigger')
 	Remotes.RemoteEvent.OnServerEvent:Connect(function(plr, arg)
 		if ClientRemotes[arg.Type] then -- faster to remove 'Type' and then st leave it?
 			ClientRemotes[arg.Type](plr, arg) 
