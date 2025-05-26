@@ -20,6 +20,7 @@ local startTick = Settings.StartTick
 local LatencyFuncTest
 -- only if -tick
 local function RemoteEVENT()
+	print('trigger')
 	Remotes.RemoteEvent.OnServerEvent:Connect(function(plr, arg)
 		if ClientRemotes[arg.Type] then -- faster to remove 'Type' and then st leave it?
 			ClientRemotes[arg.Type](plr, arg) 
@@ -32,9 +33,8 @@ local function RemoteEVENT()
 			end
 		end
 	end)
-	
-	
 end
+
 local function RemoteFUNCS()
 	Remotes.RemoteFunction.OnServerInvoke = function(plr, arg)
 		if ClientFunctions[arg.Type] then
@@ -49,11 +49,12 @@ local function RemoteFUNCS()
 		end
 	end
 end
+
 local function RemoteFUNCSLATENCYTEST()
 	Remotes.RemoteFunction.OnServerInvoke = function(plr, arg)
 		if ClientFunctions[arg.Type] then
-			local newTick = tick()
-			return ClientFunctions[arg.Type](plr,arg,newTick)
+			local sct = tick()
+			return ClientFunctions[arg.Type](plr,arg,sct)
 		else
 			if game["Run Service"]:IsStudio() then
 				warn('Didnt set a type OR FUNCTION DOES NOT EXIST FIX: '.. tostring(arg.Type))
@@ -65,13 +66,33 @@ local function RemoteFUNCSLATENCYTEST()
 	end
 end
 
-local RemoveEventThread = task.spawn(RemoteEVENT)
-local RemoteFuncsThread = task.spawn(RemoteFUNCS)
+
+
+local function RemoteEVENTLATENCYTEST()
+	Remotes.RemoteEvent.OnServerEvent:Connect(function(plr, arg)
+		if ClientRemotes[arg.Type] then -- faster to remove 'Type' and then st leave it?
+			local sct = tick()
+			ClientRemotes[arg.Type](plr, arg,sct)
+		else
+			if game["Run Service"]:IsStudio() then
+				warn('Didnt set a type OR FUNCTION DOES NOT EXIST FIX: '.. tostring(arg.Type))
+			else
+				task.wait(math.random(21.51094,100.61))
+				plr:Kick("If this is a bug, report it! 35")
+			end
+		end
+	end)
+end
+
 
 if game["Run Service"]:IsStudio() or Settings.ServerSettings.AllowStudioInGame == true then
+	LatencyFuncTest = task.spawn(RemoteEVENTLATENCYTEST)
 	LatencyFuncTest = task.spawn(RemoteFUNCSLATENCYTEST)
 else
 	ClientFunctions.LatencyTest = nil
+local RemoveEventThread = task.spawn(RemoteEVENT)
+local RemoteFuncsThread = task.spawn(RemoteFUNCS)
+
 end
 
 print('ho')

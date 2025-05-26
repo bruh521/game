@@ -24,10 +24,5 @@ function module.RequestTick(plr, ...)
 	return startTick
 end
 ]]
-function module.LatencyTest(plr,info,fst)
-	local CurTick = tick()
-	-- info.ClientTick
-	print('[Client ping IN MS] Latency to first stop from Client --> MAIN: ' .. (fst-info.ClientTick)*1000)
-	print('[Main --> Client Funcs IN MS] Server Latency: ' .. string.format("%f",(CurTick-fst)*1000))
-end
+
 return module

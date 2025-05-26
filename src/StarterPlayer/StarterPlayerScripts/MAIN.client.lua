@@ -35,3 +35,12 @@ workspace:WaitForChild("LatencyButton").ClickDetector.MouseClick:Connect(functio
 end)
 ]]
 
+-- test code
+
+local LatencyTestBrick = workspace:WaitForChild("LatencyTest")
+LatencyTestBrick.ClickDetector.MouseClick:Connect(function()
+RemoteEvent:FireServer({
+	Type = "LatencyTest",
+	ClientTick = tick()
+})
+end)
