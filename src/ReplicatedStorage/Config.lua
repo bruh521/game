@@ -4,7 +4,7 @@ local module = {}
 -- default attributes DO NOT CHANGE (used for setting regular values)
 module.CharAttributes = {
 	["WalkSpeed"] = {
-		Default = 16,
+		Default = 24,
 	},
 	["JumpHeight"] = {
 		Default = 7.2,
