@@ -2,7 +2,7 @@ local module = {}
 
 module.CharAttributes = {
 	["WalkSpeed"] = {
-		Default = 18,
+		Default = 16,
 	},
 	["JumpHeight"] = {
 		Default = 7.2,
@@ -11,7 +11,7 @@ module.CharAttributes = {
 		Default = 100,
 	},
 	["RespawnTime"] = {
-		Default = 0,
+		Default = 0, -- 0 is so awesome!
 	},
 }
 module.DefaultSettings = {
@@ -54,7 +54,7 @@ module.BannedThings = {
 	["LeftLowerLeg"] = "LeftLeg",
 	["LeftUpperLeg"] = "LeftLeg",
 	["UpperTorso"] = "Torso",
-	["LowerTorso"] = "Torso", -- test file line
+	["LowerTorso"] = "Torso",
 	
 }
 
