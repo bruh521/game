@@ -2,7 +2,7 @@ local module = {}
 
 module.CharAttributes = {
 	["WalkSpeed"] = {
-		Default = 21,
+		Default = 24,
 	},
 	["JumpHeight"] = {
 		Default = 7.2,
