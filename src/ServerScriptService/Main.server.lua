@@ -94,7 +94,6 @@ local RemoteFuncsThread = task.spawn(RemoteFUNCS)
 
 end
 
-print('ho')
 -- Player Startup
 local function onCharacterAdded(character)
 	--character:WaitForChild("UpperTorso")
