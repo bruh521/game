@@ -54,7 +54,7 @@ module.BannedThings = {
 	["LeftLowerLeg"] = "LeftLeg",
 	["LeftUpperLeg"] = "LeftLeg",
 	["UpperTorso"] = "Torso",
-	["LowerTorso"] = "Torso",
+	["LowerTorso"] = "Torso", -- test file line
 	
 }
 
