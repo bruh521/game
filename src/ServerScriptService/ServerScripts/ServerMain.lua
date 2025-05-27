@@ -1,4 +1,6 @@
 local module = {}
+local Debris = game:GetService("Debris")
+local MarketplaceService = game:GetService("MarketplaceService")
 local Players = game:WaitForChild("Players")
 local Lighting = game:WaitForChild("Lighting")
 local ReplicatedFirst = game:WaitForChild("ReplicatedFirst")
@@ -20,6 +22,7 @@ local DefaultRig = Stuff:WaitForChild("DefaultSizeRig")
 local constraint = Config.SizeConstraintsPlusOrMinus
 local CVars = game.ReplicatedStorage:WaitForChild("CVars")
 local Map = workspace:WaitForChild("Map")
+local Debris = game:GetService("Debris")
 local function SetSizeConstraintsNew(char,tables)
 		local charHum = char:WaitForChild("Humanoid") 
 		local NewCharDesc = Instance.new("HumanoidDescription")
