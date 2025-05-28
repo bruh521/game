@@ -160,7 +160,7 @@ local function onTouched(hit)
 	local char = hit.Parent
 	if char then
 		local humanoid = char:FindFirstChild("Humanoid")
-		if humanoid then
+		if humanoid then -- hi
 			local rootPart = humanoid.RootPart
 			if rootPart and rootPart.Velocity.Y < 200 then
 				local bv = Instance.new("BodyVelocity")
@@ -168,6 +168,7 @@ local function onTouched(hit)
 				bv.Velocity = Vector3.new(0,200,0)
 				bv.Parent = rootPart
 				Debris:AddItem(bv,.25)
+				-- readd debris
 			end
 		end
 	end

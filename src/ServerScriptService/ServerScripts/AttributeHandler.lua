@@ -37,16 +37,17 @@ function module2.Health(c)
 end
 function module2.WalkSpeed(c)
 	c.Humanoid.WalkSpeed = c.Humanoid:GetAttribute("WalkSpeed") 
-
 end
 function module2.JumpHeight(c)
 	c.Humanoid.JumpHeight = c.Humanoid:GetAttribute("JumpHeight") 
 end
+
+
 function module.WatchAttributes(char)
 	if char:FindFirstChild("Humanoid") then
 	char.Humanoid.AttributeChanged:Connect(function(erm)
 		if module2[erm](char) then 	
-			module2[erm](char) end
+			module2[erm](char) end -- test
 	end)
 	end
 end
