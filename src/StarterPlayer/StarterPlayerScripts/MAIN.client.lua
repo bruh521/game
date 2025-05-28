@@ -15,6 +15,7 @@ local ClientScripts = ReplicatedStorage:WaitForChild("ClientScripts")
 local ClientMain = ClientScripts:WaitForChild("ClientMain")
 local RemoteFunction = Remotes:WaitForChild("RemoteFunction")
 local baseTick
+local Locations = game:WaitForChild("Locations")
 local RunService = game:GetService("RunService")
 --local v1 = ClientMain.InitiateLocatonDetermination()
 

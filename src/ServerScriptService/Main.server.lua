@@ -101,9 +101,12 @@ else
 
 	-- remove DevRemotes
 local DevRemotes = ClientRemotes.DevRemotes
-
+local DevFunctions = ClientFunctions.DevFunctions
 for DevRemotesI, DevRemoteName in pairs(DevRemotes) do
 	ClientRemotes[DevRemotes[DevRemotesI]] = nil
+end
+for DevFunctionsI, DevFunctionsName in pairs(DevFunctions) do
+	DevFunctions[DevFunctions[DevFunctionsI]] = nil
 end
 --[[local a = require(game.ServerScriptService.ServerScripts.ClientRemotes)
 local b = a.DevRemotes
@@ -174,8 +177,3 @@ ServerMain.setBouncers()
 	end
 end)
 ]]
-local Attributes = require(game.ServerScriptService.ServerScripts.Attributes)
-Attributes.AddWalkSpeed(game.Players.DeanNoobLeader,{
-    ["Speed"] = 300,
-    ["Duration"] = 5,
-})
