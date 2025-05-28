@@ -1,5 +1,4 @@
 local module = {}
-local Debris = game:GetService("Debris")
 local MarketplaceService = game:GetService("MarketplaceService")
 local Players = game:WaitForChild("Players")
 local Lighting = game:WaitForChild("Lighting")
