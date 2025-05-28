@@ -20,9 +20,11 @@ local Targetshadow = Stuff:WaitForChild("TargetShadow")
 local Junk = workspace:WaitForChild("Junk")
 local posPlusOne = Vector3.new(1,1,1)
 local Yourself = {}
+local Locations = workspace:WaitForChild("Locations")
+local LocationList = {}
+local LP = game.Players.LocalPlayer
 
-
-
+local curLocation = nil
 -- remove out of char, fix shadow on meshes and rotation
 
 function module.TargetedShadow(HumRootPart)
@@ -47,5 +49,43 @@ while game["Run Service"].Heartbeat:Wait() do
 	end
 	end
 	]]
+end
+
+
+local CurLocation = nil
+local LocationParams = RaycastParams.new()
+LocationParams.FilterDescendantsInstances = {}
+LocationParams.FilterType = Enum.RaycastFilterType.Include
+LocationParams.IgnoreWater = true
+
+local function SetLocations()
+	local list = {}
+	for i, v in pairs(workspace:GetChildren()) do
+	table.insert(list,v)
+	end
+	LocationList = list
+	LocationParams.FilterDescendantsInstances = LocationList
+end
+
+local function MainLocationThread()
+	while task.wait(.43) do
+		if LP.Character ~= nil and LP.Character:FindFirstChild("Head") then
+		if game.Players.LocalPlayer.Character:FindFirstChild("Head") then
+			local result = workspace:Raycast(LP.Character:FindFirstChild("Head").Position,Vector3.new(0,10000,0),LocationParams)
+			if result then
+				local hitPart = result.Instance
+				if curLocation ~= hitPart.Name then
+					curLocation = hitPart.Name
+					-- add MUsic player
+				end
+			end
+		end
+		end
+	end
+end
+function module.StartLocation()
+	SetLocations()
+coroutine.spawn(MainLocationThread())
+	
 end
 return module

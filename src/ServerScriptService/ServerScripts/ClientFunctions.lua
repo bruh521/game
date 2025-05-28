@@ -17,6 +17,8 @@ local ClientScripts = require(ReplicatedStorage.ClientScripts.ClientMain)
 local NPCs = workspace:FindFirstChild("NPCs")
 local ClientRemotes = require(ServerScripts:WaitForChild("ClientRemotes"))
 local Locations = workspace:WaitForChild("Locations")
+local LP = game.Players.LocalPlayer
+
 module.DevFunctions = {
 
 }
@@ -27,7 +29,8 @@ function module.RequestTick(plr, ...)
 end
 ]]
 
-function module.StartLocationTracking() 
 
-end
+
+
+
 return module

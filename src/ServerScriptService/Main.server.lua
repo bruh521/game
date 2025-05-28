@@ -153,6 +153,7 @@ end
 local function onPlayerAdded(player)
 	player.CharacterAdded:Connect(onCharacterAdded)
 	player.CharacterRemoving:Connect(onCharacterRemoving)
+
 	player:LoadCharacter()
 
 end

@@ -31,7 +31,13 @@ Hum:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,false)
 --[[local TargetShadowLoop = ClientMain.TargetedShadow(HumRootPart)
 
 task.spawn(ClientMain)
-]]
+
 local TargetShadowLoop = ClientMain.TargetedShadow(HumRootPart)
 task.spawn(ClientMain)
+]]
+
 -- no ragdoll 
+
+
+ClientMain.StartLocation()
+

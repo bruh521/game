@@ -11,6 +11,7 @@ local ServerStorage = game:WaitForChild("ServerStorage")
 local ServerScriptService = game:WaitForChild("ServerScriptService")
 local ServerScripts = ServerScriptService:WaitForChild("ServerScripts")
 local StarterChar = ReplicatedStorage:WaitForChild("StarterChar")
+
 local Settings = require(ServerScripts:WaitForChild("Settings"))
 local Alive = workspace:WaitForChild("Alive")
 local DefaultSizeRig = ReplicatedStorage:FindFirstChild("Stuff"):FindFirstChild("DefaultSizeRig")
@@ -145,6 +146,7 @@ function module.SetupCharacter(...)
 	bv.Parent = Character
 	
 end
+
 
 function module.ActivateDialogue()
 	-- i need GUI to make dialogue 
