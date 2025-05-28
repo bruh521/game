@@ -23,8 +23,9 @@ local DefaultRig = Stuff:WaitForChild("DefaultSizeRig")
 local constraint = Config.SizeConstraintsPlusOrMinus
 local CVars = game.ReplicatedStorage:WaitForChild("CVars")
 local Map = workspace:WaitForChild("Map")
+task.wait()
 
-if game:GetService("RunService"):IsStudio() then
+if Settings.DevMode == true then
 else
     script.Disabled = true
 end

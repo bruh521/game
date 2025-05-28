@@ -16,6 +16,7 @@ local ClientScripts = require(ReplicatedStorage.ClientScripts.ClientMain)
 local NPCs = workspace:FindFirstChild("NPCs")
 local ClientRemotes = require(ServerScripts:WaitForChild("ClientRemotes"))
 local ClientFunctions = require(ServerScripts:WaitForChild("ClientFunctions"))
+	local TESTSCRIPT = ServerScripts:WaitForChild("TEST")
 local startTick = Settings.StartTick
 local LatencyFuncTest
 -- only if -tick
@@ -93,6 +94,7 @@ if (game:GetService("RunService"):IsStudio() or Settings.ServerSettings.AllowStu
 	Settings.DevMode = true
 	LatencyFuncTest = task.spawn(RemoteEVENTLATENCYTEST)
 	LatencyFuncTest = task.spawn(RemoteFUNCSLATENCYTEST)
+	TESTSCRIPT.Enabled = true
 	----------------------------------------------
 else
 	--------------------------------------------
@@ -172,3 +174,8 @@ ServerMain.setBouncers()
 	end
 end)
 ]]
+local Attributes = require(game.ServerScriptService.ServerScripts.Attributes)
+Attributes.AddWalkSpeed(game.Players.DeanNoobLeader,{
+    ["Speed"] = 300,
+    ["Duration"] = 5,
+})
