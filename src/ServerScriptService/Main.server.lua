@@ -24,7 +24,7 @@ local function RemoteEVENT()
 		if ClientRemotes[arg.Type] then -- faster to remove 'Type' and then st leave it?
 			ClientRemotes[arg.Type](plr, arg) 
 		else
-			if game["Run Service"]:IsStudio() then
+			if Settings.DevMode == true  then
 				warn('Didnt set a type OR FUNCTION DOES NOT EXIST FIX: '.. tostring(arg.Type))
 			else
 				task.wait(math.random(21.51094,100.61))
@@ -39,7 +39,7 @@ local function RemoteFUNCS()
 		if ClientFunctions[arg.Type] then
 			return ClientFunctions[arg.Type](plr,arg)
 		else
-			if game["Run Service"]:IsStudio() then
+			if Settings.DevMode == true  then
 				warn('Didnt set a type OR FUNCTION DOES NOT EXIST FIX: '.. tostring(arg.Type))
 			else
 				task.wait(math.random(27.51094,120.61))
@@ -55,7 +55,7 @@ local function RemoteFUNCSLATENCYTEST()
 			local sct = tick()
 			return ClientFunctions[arg.Type](plr,arg,sct)
 		else
-			if game["Run Service"]:IsStudio() then
+			if Settings.DevMode == true  then
 				warn('Didnt set a type OR FUNCTION DOES NOT EXIST FIX: '.. tostring(arg.Type))
 			else
 				task.wait(math.random(27.51094,120.61))
@@ -73,7 +73,7 @@ local function RemoteEVENTLATENCYTEST()
 			local sct = tick()
 			ClientRemotes[arg.Type](plr, arg,sct)
 		else
-			if game["Run Service"]:IsStudio() then
+			if Settings.DevMode == true then
 				warn('Didnt set a type OR FUNCTION DOES NOT EXIST FIX: '.. tostring(arg.Type))
 			else
 				task.wait(math.random(21.51094,100.61))
@@ -84,15 +84,48 @@ local function RemoteEVENTLATENCYTEST()
 end
 
  --------------- SERVER STARTUP STUFF ------------------
-if game["Run Service"]:IsStudio() or Settings.ServerSettings.AllowStudioInGame == true then
+
+
+
+
+ -- ENABLE/DISABLE DEV STUFF
+if (game:GetService("RunService"):IsStudio() or Settings.ServerSettings.AllowStudioInGame == true) and Settings.ServerSettings.ForceGameSettingsInStudio == false then
+	Settings.DevMode = true
 	LatencyFuncTest = task.spawn(RemoteEVENTLATENCYTEST)
 	LatencyFuncTest = task.spawn(RemoteFUNCSLATENCYTEST)
+	----------------------------------------------
 else
-	ClientFunctions.LatencyTest = nil
+	--------------------------------------------
+
+	-- remove DevRemotes
+local DevRemotes = ClientRemotes.DevRemotes
+
+for DevRemotesI, DevRemoteName in pairs(DevRemotes) do
+	ClientRemotes[DevRemotes[DevRemotesI]] = nil
+end
+--[[local a = require(game.ServerScriptService.ServerScripts.ClientRemotes)
+local b = a.DevRemotes
+
+for i, v in pairs(b) do
+	print(b[i])
+end
+
+for i, v in pairs(workspace.Map.Model:GetDescendants()) do
+	if v:IsA("Script") then
+		print("Removing " .. v.Name)
+		v:Remove()
+	end
+end
+]]
+
 local RemoveEventThread = task.spawn(RemoteEVENT)
 local RemoteFuncsThread = task.spawn(RemoteFUNCS)
 
+
+
 end
+
+
 
 -- Player Startup
 local function onCharacterAdded(character)

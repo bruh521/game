@@ -13,7 +13,7 @@ module.CharAttributes = {
 		Default = 100,
 	},
 	["RespawnTime"] = {
-		Default = 0, -- 0 is so awesome!
+		Default = 0, 
 	},
 }
 
@@ -29,7 +29,7 @@ module.DefaultAttributes = {
 		Default = 100,
 	},
 	["RespawnTime"] = {
-		Default = 0, -- 0 is so awesome!
+		Default = 0, 
 	},
 }
 module.DefaultSettings = {
@@ -77,7 +77,7 @@ module.BannedThings = {
 }
 
 
-module.BannedThingsNum = 5637151279
+-- module.BannedThingsNum = 5637151279
 module.RestrainCharacters = true
 return module
 

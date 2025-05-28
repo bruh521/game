@@ -17,7 +17,7 @@ local ClientScripts = require(ReplicatedStorage.ClientScripts.ClientMain)
 local NPCs = workspace:FindFirstChild("NPCs")
 local ClientRemotes = require(ServerScripts:WaitForChild("ClientRemotes"))
 
-local startTick = Settings.StartTick
+
 --[[
 function module.RequestTick(plr, ...)
 	local info = ... or {}

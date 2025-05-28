@@ -43,12 +43,13 @@ function module2.JumpHeight(c)
 end
 
 
+
 function module.WatchAttributes(char)
 	if char:FindFirstChild("Humanoid") then
 	char.Humanoid.AttributeChanged:Connect(function(erm)
 		if module2[erm](char) then 	
-			module2[erm](char) end -- test
-	end)
+			module2[erm](char) end 
+		end)
 	end
 end
 

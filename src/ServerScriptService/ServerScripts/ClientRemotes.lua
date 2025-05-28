@@ -1,5 +1,9 @@
 local module = {}
 
+module.DevRemotes = {
+	'ChangeMove',
+	'LatencyTest', -- lets client change a move
+}
 function module.LatencyTest(plr,info,fst)
     local NumMult = 100
 	local ServerTick = tick()
