@@ -23,6 +23,7 @@ local DefaultRig = Stuff:WaitForChild("DefaultSizeRig")
 local constraint = Config.SizeConstraintsPlusOrMinus
 local CVars = game.ReplicatedStorage:WaitForChild("CVars")
 local Map = workspace:WaitForChild("Map")
+local Attributes = require(ServerScripts.Attributes)
 task.wait()
 
 if Settings.DevMode == true then
@@ -33,5 +34,8 @@ end
 local randompart = workspace:WaitForChild("randomPart")
 randompart.ClickDetector.MouseClick:Connect(function(plr)
     local char = plr.Character
-    char.Humanoid:SetAttribute("WalkSpeed",300)
+    Attributes.AddWalkSpeed(plr,{
+        ['Speed'] = 300,
+        ['Duration'] = 10,
+    })
 end)
