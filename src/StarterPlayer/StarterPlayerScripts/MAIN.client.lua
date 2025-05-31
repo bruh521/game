@@ -16,4 +16,5 @@ local ClientMain = require(ClientScripts:WaitForChild("ClientMain"))
 local RemoteFunction = Remotes:WaitForChild("RemoteFunction")
 
 print("hello there :)")
-ClientMain.StartLocation()
+coroutine.spawn(ClientMain.StartLocation())
+

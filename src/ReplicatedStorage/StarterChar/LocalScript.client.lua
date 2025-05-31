@@ -39,5 +39,4 @@ task.spawn(ClientMain)
 -- no ragdoll 
 
 
-ClientMain.StartLocation()
 
